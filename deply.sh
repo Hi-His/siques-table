@@ -24,7 +24,7 @@ cd docs
 
 git init 
 
-git add -add
+git add -A
 
 git commit -m 'deploy'
 
