@@ -20,7 +20,7 @@ git commit -m 'deploy'
 git push -f git@github.com:ericheshenghao/siques-table.git master
 
 
-cd dist 
+cd docs 
 
 git init 
 
