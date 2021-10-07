@@ -28,6 +28,6 @@ git add -add
 
 git commit -m 'deploy'
 
-git push -f git@github.com:ericheshenghao/siques-table.git page
+git push -f git@github.com:ericheshenghao/siques-table.git master:gh-pages
 
 cd -
