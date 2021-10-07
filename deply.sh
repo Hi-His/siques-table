@@ -19,4 +19,15 @@ git commit -m 'deploy'
 # 部署到 https://<USERNAME>.github.io/<REPO>
 git push -f git@github.com:ericheshenghao/siques-table.git master
 
+
+cd dist 
+
+git init 
+
+git add -add
+
+git commit -m 'deploy'
+
+git push -f git@github.com:ericheshenghao/siques-table.git page
+
 cd -
