@@ -71,11 +71,7 @@ export default class Cell extends Vue {
     if (this.type !== 'checkBox') {
       var text = e.clipboardData!.getData('text')
 
-      if (text.split('\n').length == 1) {
-        this.contentCopy = text
-      } else {
-        this.$emit('cellPaste', text)
-      }
+      this.$emit('cellPaste', text)
     }
   }
   deleteCell() {

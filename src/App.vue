@@ -43,7 +43,7 @@ import Model from './components/Model.vue'
 export default class App extends Vue {
   list: Array<Array<any>> = [
     ['详细说明', '字段', '示例值', '是否必须'],
-    ['', '', ''],
+    ['', '', '', 'false'],
   ]
   columnlist: Array<Array<string>> = []
 
@@ -92,6 +92,10 @@ export default class App extends Vue {
   deleteCell(i: number, j: number) {
     // 下方上移
     var height = this.list.length
+    if (i == height - 1) {
+      this.list[i][j] = ''
+      this.$set(this.list, i, this.list[i])
+    }
     for (let index = i; index < height - 1; index++) {
       this.list[index][j] = this.list[index + 1][j]
 
@@ -108,11 +112,20 @@ export default class App extends Vue {
         end = split.length
       }
 
-      for (let index = i, index1 = 0; index1 < end; index++, index1++) {
+      for (let index = i, index1 = 0; index1 < end + 1; index++, index1++) {
         this.list[index] == null ? this.list.push(new Array(0)) : ''
 
         this.list[index][j] = split[index1]
 
+        if (j == 0 && this.list[index][j + 3] === undefined) {
+          this.list[index].push('')
+          this.list[index].push('')
+          this.list[index].push(false)
+        }
+        if (j == 1 && this.list[index][j + 2] === undefined) {
+          this.list[index].push('')
+          this.list[index].push(false)
+        }
         if (j == 2 && this.list[index][j + 1] === undefined) {
           this.list[index].push(false)
         }
