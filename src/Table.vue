@@ -15,6 +15,7 @@
           :index="index"
           @cellDelete="cellDelete"
           @cellPaste="(text) => cellPaste(text, i, j)"
+          @cellTranslate="cellTranslate"
         >
         </Cell>
       </CellHori>
@@ -29,7 +30,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import CellHori from './components/CellHori.vue'
 import Cell from './components/Cell.vue'
-
+/* eslint-disable */
 import Model from './components/Model.vue'
 @Component({
   components: {
@@ -93,6 +94,31 @@ export default class Table extends Vue {
         this.$set(this.list, index + i, curr)
       })
     }
+  }
+
+  cellTranslate(i: number, j: number) {
+    var zhcn = ''
+
+    for (let i = 1; i < this.list.length; i++) {
+      zhcn += '\r\n' + this.list[i][0]
+    }
+    this.doTranslate(zhcn)
+  }
+
+  doTranslate(zhcn: string) {
+    var api = 'http://fanyi-api.baidu.com/api/trans/vip/translate?'
+    var sign = '20211011000969958' + zhcn + '21089' + 'qZcXd83zBFIkSTbhi4DK'
+    sign = this.$md5('加密内容')
+    api =
+      api +
+      'q=' +
+      zhcn +
+      'from=zh&to=en&appid=20211011000969958&salt=21089&sign=' +
+      sign
+
+    this.axios.get(api).then((response) => {
+      console.log(response.data)
+    })
   }
 }
 </script>

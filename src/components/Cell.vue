@@ -7,6 +7,15 @@
     >
       x
     </button>
+
+    <button
+      @click="cellTranslate"
+      v-if="i == 0 && index[j] == 1"
+      class="bottom-right"
+    >
+      翻译此列
+    </button>
+
     <select
       class="offSelect"
       @change="valChange"
@@ -98,6 +107,11 @@ export default class Cell extends Vue {
       this.$emit('cellPaste', text)
     }
   }
+
+  cellTranslate() {
+    this.$emit('cellTranslate', this.i, this.j)
+  }
+
   cellDelete() {
     this.$emit('cellDelete', this.i, this.j)
   }
@@ -115,6 +129,14 @@ export default class Cell extends Vue {
   left: inherit;
   font-size: 12px;
   margin-left: 184px;
+}
+
+.bottom-right {
+  position: absolute;
+  right: inherit;
+  font-size: 12px;
+  margin-left: 142px;
+  top: 41px;
 }
 
 .offSelect {
