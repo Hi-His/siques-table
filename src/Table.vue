@@ -106,18 +106,9 @@ export default class Table extends Vue {
   }
 
   doTranslate(zhcn: string) {
-    var api = 'http://fanyi-api.baidu.com/api/trans/vip/translate?'
     var sign = '20211011000969958' + zhcn + '21089' + 'qZcXd83zBFIkSTbhi4DK'
     var win: any = window
     sign = win.MD5(sign)
-
-    api =
-      api +
-      'q=' +
-      zhcn +
-      '&from=zh&to=en&appid=20211011000969958&salt=21089&sign=' +
-      sign +
-      '&callback=callbackName'
 
     this.$jquery.ajax({
       url: 'https://fanyi-api.baidu.com/api/trans/vip/translate',
