@@ -1,12 +1,17 @@
 <template>
   <div>
     <button
-      @click="deleteCell"
+      @click="cellDelete"
       v-if="type !== 'checkBox' && i != 0"
       class="off"
     >
       x
     </button>
+    <select @change="valChange" v-model="index[j]" v-if="i == 0 && j != 3">
+      <option value="0">字段名称</option>
+      <option value="1">字段</option>
+      <option value="2">详细说明</option>
+    </select>
     <input
       v-if="type === 'checkBox'"
       type="checkBox"
@@ -15,6 +20,7 @@
     />
     <input
       v-else
+      :disabled="i == 0"
       @paste.prevent="cellPaste"
       class="cell_hori"
       type="text"
@@ -40,10 +46,23 @@ export default class Cell extends Vue {
   @Prop()
   type: any
 
+  @Prop()
+  index: any
+
   contentCopy = {}
+
+  selection: any = {
+    0: '字段名称',
+    1: '字段',
+    2: '详细说明',
+  }
 
   change() {
     this.contentCopy = !this.contentCopy
+  }
+
+  valChange() {
+    this.contentCopy = this.selection[this.index[this.j]]
   }
   mounted() {
     this.contentCopy = this.content
@@ -74,8 +93,8 @@ export default class Cell extends Vue {
       this.$emit('cellPaste', text)
     }
   }
-  deleteCell() {
-    this.$emit('deleteCell', this.i, this.j)
+  cellDelete() {
+    this.$emit('cellDelete', this.i, this.j)
   }
 
   cancle(e: any) {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="generate" type="text">点击生成</button>
+    <!-- <button @click="generate" type="text">点击生成</button> -->
     <div v-html="showModel"></div>
   </div>
 </template>
@@ -10,6 +10,9 @@ import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 @Component({})
 export default class Model extends Vue {
   @Prop() content!: Array<Array<string>>
+
+  @Prop()
+  index: any
 
   private showModel = ''
 
@@ -21,9 +24,11 @@ export default class Model extends Vue {
         this.showModel +=
           '<pre >' +
           "<span class='annotation'>@ApiProperty</span>(value = <span class='green'>'" +
-          `</span><span class='green'>${e[0] || ''}'` +
+          `</span><span class='green'>${
+            e[this.index.findIndex((v: string) => v === '0')] || ''
+          }'` +
           `</span><span class='orange'>,</span>example = <span class='green'>${
-            e[2] || ''
+            e[this.index.findIndex((v: string) => v === '2')] || ''
           }</span>` +
           `<span class='orange'>${
             e[3] || false ? ",</span>required = <span class='orange'>true" : ''
@@ -34,7 +39,7 @@ export default class Model extends Vue {
               : ''
           }` +
           `<span class='orange'>private </span>String <span class='purple'>${this.toHump(
-            e[1] || ''
+            e[this.index.findIndex((v: string) => v === '1')] || ''
           )}</span><span class='orange'>;<br>` +
           "</span><span class='orange'><br></span>"
       }
