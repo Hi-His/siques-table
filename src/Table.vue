@@ -120,7 +120,7 @@ export default class Table extends Vue {
       '&callback=callbackName'
 
     this.$jquery.ajax({
-      url: 'http://fanyi-api.baidu.com/api/trans/vip/translate',
+      url: 'https://fanyi-api.baidu.com/api/trans/vip/translate',
       type: 'get',
       dataType: 'jsonp',
       data: {
