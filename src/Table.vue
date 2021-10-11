@@ -106,14 +106,14 @@ export default class Table extends Vue {
   }
 
   doTranslate(zhcn: string) {
-    var api = 'http://fanyi-api.baidu.com/api/trans/vip/translate?'
+    var api = 'https://fanyi-api.baidu.com/api/trans/vip/translate?'
     var sign = '20211011000969958' + zhcn + '21089' + 'qZcXd83zBFIkSTbhi4DK'
     sign = this.$md5('加密内容')
     api =
       api +
       'q=' +
       zhcn +
-      'from=zh&to=en&appid=20211011000969958&salt=21089&sign=' +
+      '&from=zh&to=en&appid=20211011000969958&salt=21089&sign=' +
       sign
 
     this.axios.get(api).then((response) => {
