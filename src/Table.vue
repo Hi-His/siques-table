@@ -100,24 +100,50 @@ export default class Table extends Vue {
     var zhcn = ''
 
     for (let i = 1; i < this.list.length; i++) {
-      zhcn += '\r\n' + this.list[i][0]
+      zhcn += this.list[i][this.index.findIndex((v: string) => v === '0')] + ','
     }
     this.doTranslate(zhcn)
   }
 
   doTranslate(zhcn: string) {
-    var api = 'https://fanyi-api.baidu.com/api/trans/vip/translate?'
+    var api = 'http://fanyi-api.baidu.com/api/trans/vip/translate?'
     var sign = '20211011000969958' + zhcn + '21089' + 'qZcXd83zBFIkSTbhi4DK'
-    sign = this.$md5('加密内容')
+    var win: any = window
+    sign = win.MD5(sign)
+
     api =
       api +
       'q=' +
       zhcn +
       '&from=zh&to=en&appid=20211011000969958&salt=21089&sign=' +
-      sign
+      sign +
+      '&callback=callbackName'
 
-    this.axios.get(api).then((response) => {
-      console.log(response.data)
+    this.$jquery.ajax({
+      url: 'http://fanyi-api.baidu.com/api/trans/vip/translate',
+      type: 'get',
+      dataType: 'jsonp',
+      data: {
+        q: zhcn,
+        appid: '20211011000969958',
+        salt: '21089',
+        from: 'zh',
+        to: 'en',
+        sign: sign,
+      },
+      success: (data: any) => {
+        const { trans_result } = data
+        var res = trans_result[0].dst
+        res = res.replaceAll(' ', '_')
+        res = res.replaceAll(',_', '\r\n')
+        res = res.replaceAll(',', '\r\n')
+
+        this.cellPaste(
+          res,
+          1,
+          this.index.findIndex((v: string) => v === '1')
+        )
+      },
     })
   }
 }

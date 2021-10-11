@@ -13,7 +13,7 @@
       v-if="i == 0 && index[j] == 1"
       class="bottom-right"
     >
-      翻译此列
+      翻译字段
     </button>
 
     <select

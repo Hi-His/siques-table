@@ -27,9 +27,9 @@ export default class Model extends Vue {
           `</span><span class='green'>${
             e[this.index.findIndex((v: string) => v === '0')] || ''
           }'` +
-          `</span><span class='orange'>,</span>example = <span class='green'>${
+          `</span><span class='orange'>,</span>example = '<span class='green'>${
             e[this.index.findIndex((v: string) => v === '2')] || ''
-          }</span>` +
+          }'</span>` +
           `<span class='orange'>${
             e[3] || false ? ",</span>required = <span class='orange'>true" : ''
           }</span>)<br>` +
@@ -47,6 +47,7 @@ export default class Model extends Vue {
   }
 
   toHump(name: string) {
+    name = name.replaceAll(' ', '_')
     return name.replace(/_(\w)/g, function (all, letter) {
       return letter.toUpperCase()
     })
