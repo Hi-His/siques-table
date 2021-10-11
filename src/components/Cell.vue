@@ -7,7 +7,12 @@
     >
       x
     </button>
-    <select @change="valChange" v-model="index[j]" v-if="i == 0 && j != 3">
+    <select
+      class="offSelect"
+      @change="valChange"
+      v-model="index[j]"
+      v-if="i == 0 && j != 3"
+    >
       <option value="0">字段名称</option>
       <option value="1">字段</option>
       <option value="2">详细说明</option>
@@ -110,6 +115,13 @@ export default class Cell extends Vue {
   left: inherit;
   font-size: 12px;
   margin-left: 184px;
+}
+
+.offSelect {
+  position: absolute;
+  left: inherit;
+  font-size: 12px;
+  margin-left: 135px;
 }
 .cell_hori {
   width: 200px;
