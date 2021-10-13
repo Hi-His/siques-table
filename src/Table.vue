@@ -9,7 +9,7 @@
           v-for="(el, j) in element"
           :key="j"
           :content="el"
-          :type="typeof el === 'boolean' ? 'checkBox' : ''"
+          :type="typeof el === 'boolean' && j == 3 ? 'checkBox' : ''"
           :i="i"
           :j="j"
           :index="index"
