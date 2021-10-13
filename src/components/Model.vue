@@ -35,7 +35,7 @@ export default class Model extends Vue {
           }</span>)<br>` +
           `${
             e[3] || false
-              ? "<span class='annotation'>@NotNull</span>(message = <span class='green>'</span><span  class='green' >不能为空</span><span class='green'>'</span>)<br>"
+              ? `<span class='annotation'>@NotNull</span>(message = <span class='green>'</span><span  class='green' >"不能为空"</span><span class='green'></span>)<br>`
               : ''
           }` +
           `<span class='orange'>private </span>String <span class='purple'>${this.toHump(
