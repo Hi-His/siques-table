@@ -100,7 +100,7 @@ export default class Table extends Vue {
     var zhcn = ''
 
     for (let i = 1; i < this.list.length; i++) {
-      zhcn += this.list[i][this.index.findIndex((v: string) => v === '0')] + ','
+      zhcn += this.list[i][this.index.findIndex((v: string) => v === '0')] + '/'
     }
     this.doTranslate(zhcn)
   }
@@ -126,8 +126,8 @@ export default class Table extends Vue {
         const { trans_result } = data
         var res = trans_result[0].dst
         res = res.replaceAll(' ', '_')
-        res = res.replaceAll(',_', '\r\n')
-        res = res.replaceAll(',', '\r\n')
+        res = res.replaceAll('_/_', '\r\n')
+        res = res.replaceAll('/', '\r\n')
 
         this.cellPaste(
           res,
