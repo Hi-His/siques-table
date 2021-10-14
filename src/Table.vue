@@ -106,7 +106,7 @@ export default class Table extends Vue {
         zhcn += tail
 
         if (i != this.list.length - 1) {
-          zhcn += '/'
+          zhcn += ' / '
         }
       }
     }
@@ -130,6 +130,7 @@ export default class Table extends Vue {
         from: 'zh',
         to: 'en',
         sign: sign,
+        action: '1',
       },
       success: (data: any) => {
         const { trans_result } = data

@@ -1,5 +1,6 @@
 机构id|||idOrg
 科室id|||idDep
+科室名称|||naDep
 基础数据账户|||idBdmd
 租户id|||idTet
 身份证号|||idno
@@ -12,5 +13,7 @@
 医疗就诊流程|||idVismed
 医疗就诊流程id|||idVismed
 个人|||idPi
+生日|||bod
+出生日期|||bod
 服务项目类型|||sdSrvtpCd
 激活标志|||fgActive
