@@ -100,8 +100,17 @@ export default class Table extends Vue {
     var zhcn = ''
 
     for (let i = 1; i < this.list.length; i++) {
-      zhcn += this.list[i][this.index.findIndex((v: string) => v === '0')] + '/'
+      var tail = this.list[i][this.index.findIndex((v: string) => v === '0')]
+
+      if (tail !== ' ' && tail !== '') {
+        zhcn += tail
+
+        if (i != this.list.length - 1) {
+          zhcn += '/'
+        }
+      }
     }
+
     this.doTranslate(zhcn)
   }
 
