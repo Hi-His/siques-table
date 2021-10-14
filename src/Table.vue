@@ -48,9 +48,16 @@ export default class Table extends Vue {
 
   index = ['0', '1', '2']
 
+  get height() {
+    return this.list.length - 1
+  }
+
   update(newval: any, i: number, j: number) {
     this.list[i][j] = newval
     this.$set(this.list, i, this.list[i])
+    if (i == this.height && this.list[i][j] != '') {
+      this.list.push(['', '', '', 'false'])
+    }
   }
 
   cellDelete(i: number, j: number) {
